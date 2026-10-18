@@ -19,3 +19,7 @@ copy to your local machine and set permissin to 600 then connect to level14 use 
 
 ==> ssh bandit14@bandit.labs.overthewire.org -p 2220 -i Overthewire.privatekey ==> level14
 look at level13.writeup file to see more details
+
+
+"aaWecNkG4FhxJQxz07uiwzVP6bJiYS65" ==> level14
+"pbLYuZtTg4MgaqfJx8jbA9gKKGqM68A7" ==> level15

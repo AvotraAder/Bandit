@@ -1,0 +1,56 @@
+as notice on level13 challenge, password for bandit14 are stored on /etc/bandit_pass/bandit14
+looking for it there , i have notive that all password for all level off the challenge are store there 
+
+bandit14@bandit:~$ cat /etc/bandit_pass/bandit14
+
+aaWecNkG4FhxJQxz07uiwzVP6bJiYS65
+
+bandit14@bandit:~$ cd /etc/bandit_pass/
+bandit14@bandit:/etc/bandit_pass$ ls
+bandit0  bandit10  bandit12  bandit14  bandit16  bandit18  bandit2   bandit21  bandit23  bandit25  bandit27  bandit29  bandit30  bandit32  bandit4  bandit6  bandit8
+bandit1  bandit11  bandit13  bandit15  bandit17  bandit19  bandit20  bandit22  bandit24  bandit26  bandit28  bandit3   bandit31  bandit33  bandit5  bandit7  bandit9
+bandit14@bandit:/etc/bandit_pass$ cat bandit0
+cat: bandit0: Permission denied
+bandit14@bandit:/etc/bandit_pass$ ls -la
+total 152
+drwxr-xr-x   2 root     root      4096 Sep 26 21:52 .
+drwxr-xr-x 128 root     root     12288 Oct 16 14:15 ..
+-r--------   1 bandit0  bandit0      8 Sep 26 21:52 bandit0
+-r--------   1 bandit1  bandit1     33 Sep 26 21:52 bandit1
+-r--------   1 bandit10 bandit10    33 Sep 26 21:52 bandit10
+-r--------   1 bandit11 bandit11    33 Sep 26 21:52 bandit11
+-r--------   1 bandit12 bandit12    33 Sep 26 21:52 bandit12
+-r--------   1 bandit13 bandit13    33 Sep 26 21:52 bandit13
+-r--------   1 bandit14 bandit14    33 Sep 26 21:52 bandit14
+-r--------   1 bandit15 bandit15    33 Sep 26 21:52 bandit15
+-r--------   1 bandit16 bandit16    33 Sep 26 21:52 bandit16
+-r--------   1 bandit17 bandit17    33 Sep 26 21:52 bandit17
+-r--------   1 bandit18 bandit18    33 Sep 26 21:52 bandit18
+-r--------   1 bandit19 bandit19    33 Sep 26 21:52 bandit19
+-r--------   1 bandit2  bandit2     33 Sep 26 21:52 bandit2
+-r--------   1 bandit20 bandit20    33 Sep 26 21:52 bandit20
+-r--------   1 bandit21 bandit21    33 Sep 26 21:52 bandit21
+-r--------   1 bandit22 bandit22    33 Sep 26 21:52 bandit22
+-r--------   1 bandit23 bandit23    33 Sep 26 21:52 bandit23
+-r--------   1 bandit24 bandit24    33 Sep 26 21:52 bandit24
+-r--------   1 bandit25 bandit25    33 Sep 26 21:52 bandit25
+-r--------   1 bandit26 bandit26    33 Sep 26 21:52 bandit26
+-r--------   1 bandit27 bandit27    33 Sep 26 21:52 bandit27
+-r--------   1 bandit28 bandit28    33 Sep 26 21:52 bandit28
+-r--------   1 bandit29 bandit29    33 Sep 26 21:52 bandit29
+-r--------   1 bandit3  bandit3     33 Sep 26 21:52 bandit3
+-r--------   1 bandit30 bandit30    33 Sep 26 21:52 bandit30
+-r--------   1 bandit31 bandit31    33 Sep 26 21:52 bandit31
+-r--------   1 bandit32 bandit32    33 Sep 26 21:52 bandit32
+-r--------   1 bandit33 bandit33    33 Sep 26 21:52 bandit33
+-r--------   1 bandit4  bandit4     33 Sep 26 21:52 bandit4
+-r--------   1 bandit5  bandit5     33 Sep 26 21:52 bandit5
+-r--------   1 bandit6  bandit6     33 Sep 26 21:52 bandit6
+-r--------   1 bandit7  bandit7     33 Sep 26 21:52 bandit7
+-r--------   1 bandit8  bandit8     33 Sep 26 21:52 bandit8
+-r--------   1 bandit9  bandit9     33 Sep 26 21:52 bandit9
+bandit14@bandit:/etc/bandit_pass$ 
+
+
+But unfortenately the permission are set to only view by user owner
+ 
