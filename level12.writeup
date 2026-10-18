@@ -1,0 +1,236 @@
+❯ ssh bandit12@bandit.labs.overthewire.org -p 2220
+                         _                     _ _ _   
+                        | |__   __ _ _ __   __| (_) |_ 
+                        | '_ \ / _` | '_ \ / _` | | __|
+                        | |_) | (_| | | | | (_| | | |_ 
+                        |_.__/ \__,_|_| |_|\__,_|_|\__|
+                                                       
+
+                      This is an OverTheWire game server. 
+            More information on http://www.overthewire.org/wargames
+
+backend: gibson-1
+bandit12@bandit.labs.overthewire.org's password: 
+
+      ,----..            ,----,          .---.
+     /   /   \         ,/   .`|         /. ./|
+    /   .     :      ,`   .'  :     .--'.  ' ;
+   .   /   ;.  \   ;    ;     /    /__./ \ : |
+  .   ;   /  ` ; .'___,/    ,' .--'.  '   \' .
+  ;   |  ; \ ; | |    :     | /___/ \ |    ' '
+  |   :  | ; | ' ;    |.';  ; ;   \  \;      :
+  .   |  ' ' ' : `----'  |  |  \   ;  `      |
+  '   ;  \; /  |     '   :  ;   .   \    .\  ;
+   \   \  ',  /      |   |  '    \   \   ' \ |
+    ;   :    /       '   :  |     :   '  |--"
+     \   \ .'        ;   |.'       \   \ ;
+  www. `---` ver     '---' he       '---" ire.org
+
+
+Welcome to OverTheWire!
+
+If you find any problems, please report them to the #wargames channel on
+discord or IRC.
+
+--[ Playing the games ]--
+
+  This machine might hold several wargames.
+  If you are playing "somegame", then:
+
+    * USERNAMES are somegame0, somegame1, ...
+    * Most LEVELS are stored in /somegame/.
+    * PASSWORDS for each level are stored in /etc/somegame_pass/.
+
+  Write-access to homedirectories is disabled. It is advised to create a
+  working directory with a hard-to-guess name in /tmp/.  You can use the
+  command "mktemp -d" in order to generate a random and hard to guess
+  directory in /tmp/.  Read-access to both /tmp/ is disabled and to /proc
+  restricted so that users cannot snoop on eachother. Files and directories
+  with easily guessable or short names will be periodically deleted! The /tmp
+  directory is regularly wiped.
+  Please play nice:
+
+    * don't leave orphan processes running
+    * don't leave exploit-files laying around
+    * don't annoy other players
+    * don't post passwords or spoilers
+    * again, DONT POST SPOILERS!
+      This includes writeups of your solution on your blog or website!
+
+--[ Tips ]--
+
+  This machine has a 64bit processor and many security-features enabled
+  by default, although ASLR has been switched off.  The following
+  compiler flags might be interesting:
+
+    -m32                    compile for 32bit
+    -fno-stack-protector    disable ProPolice
+    -Wl,-z,norelro          disable relro
+
+  In addition, the execstack tool can be used to flag the stack as
+  executable on ELF binaries.
+
+  Finally, network-access is limited for most levels by a local
+  firewall.
+
+--[ Tools ]--
+
+ For your convenience we have installed a few useful tools which you can find
+ in the following locations:
+
+    * gef (https://github.com/hugsy/gef) in /opt/gef/
+    * pwndbg (https://github.com/pwndbg/pwndbg) in /opt/pwndbg/
+    * gdbinit (https://github.com/gdbinit/Gdbinit) in /opt/gdbinit/
+    * pwntools (https://github.com/Gallopsled/pwntools)
+    * radare2 (http://www.radare.org/)
+
+--[ More information ]--
+
+  For more information regarding individual wargames, visit
+  http://www.overthewire.org/wargames/
+
+  For support, questions or comments, contact us on discord or IRC.
+
+  Enjoy your stay!
+
+bandit12@bandit:~$ ls
+data.txt
+bandit12@bandit:~$ cat data.txt 
+00000000: 1f8b 0808 b83e b86a 0203 6461 7461 322e  .....>.j..data2.
+00000010: 6269 6e00 0146 02b9 fd42 5a68 3931 4159  bin..F...BZh91AY
+00000020: 2653 59fc 8b90 bd00 0019 ffff dde3 ddf7  &SY.............
+00000030: feaf 7f1f ffdf fdeb bfff f6fb bf7f 8b7f  ................
+00000040: 9ffb b7e8 ffd7 afe6 d7ff fdbd b001 3b56  ..............;V
+00000050: a100 6800 1a1a 0068 34f5 0000 6869 a1a1  ..h....h4...hi..
+00000060: a00c 9a06 8000 0d00 0000 0680 001a 00d1  ................
+00000070: 91a3 4064 1e48 189e 9911 0000 00d0 1a0f  ..@d.H..........
+00000080: 51a0 0d0d 0d34 0686 81a0 680d 0000 0190  Q....4....h.....
+00000090: 34d0 184d 069a 068d 3d41 b503 40d3 6a00  4..M....=A..@.j.
+000000a0: d068 000f 5069 9100 01a0 0640 c400 01a3  .h..Pi.....@....
+000000b0: 41a6 41a1 ea00 68c8 0321 a034 f50c 868c  A.A...h..!.4....
+000000c0: 988c 80c8 00d0 0d00 00d3 2340 3468 34d1  ..........#@4h4.
+000000d0: a01a 0430 2f49 c2b0 af93 a619 8ace f855  ...0/I.........U
+000000e0: cdca fa50 d7a0 5a77 60fc 3049 c502 415c  ...P..Zw`.0I..A\
+000000f0: d3e8 e512 a644 83e0 430f ed08 286b a314  .....D..C...(k..
+00000100: d8b2 9657 4b9c c626 b5bb 79a7 03c1 0132  ...WK..&..y....2
+00000110: 23eb 0812 92c9 fa8b 190e 136b 000b 9831  #..........k...1
+00000120: 4670 7b78 d0e4 8bba af0c 40d2 2d72 7af1  Fp{x......@.-rz.
+00000130: 0d4e 21fb 4d35 a055 075a 0a80 4e35 c00c  .N!.M5.U.Z..N5..
+00000140: a41f 5d50 d81a 1228 ec0c ad54 ac32 a6a9  ..]P...(...T.2..
+00000150: 8461 1204 dabf 4cb0 48c0 d5b9 6022 3895  .a....L.H...`"8.
+00000160: 0237 a9f0 8ba3 427f 1a00 6df0 b5eb b404  .7....B...m.....
+00000170: 4a82 3930 44b8 4802 7537 e4e4 f77e cba0  J.90D.H.u7...~..
+00000180: c482 b9bc 949e e59b 4a39 4011 39c4 cf96  ........J9@.9...
+00000190: dfe1 438c f8db 3c2d 3669 d8cf e792 9c55  ..C...<-6i.....U
+000001a0: 2fdb 010e de49 1ce4 94ff b56a 3c05 14e6  /....I.....j<...
+000001b0: 41da fddc ef4c e8fe ee79 5154 5bc3 ca1d  A....L...yQT[...
+000001c0: 581a 6be1 807d eb69 1e0e b06a 2609 c128  X.k..}.i...j&..(
+000001d0: 3fef 2fe2 5097 d9e3 863e 8874 ab18 0c0c  ?./.P....>.t....
+000001e0: 52da 9559 a4cb 984e 8081 b1ec e57e 07e6  R..Y...N.....~..
+000001f0: 3aa1 4751 4ae0 5380 2f44 9eaa 0518 896c  :.GQJ.S./D.....l
+00000200: 8006 48bb 4c02 6395 b980 9fe1 6226 35d1  ..H.L.c.....b&5.
+00000210: 2a0f 9ae4 4965 097e 531c 2a9c 9783 4088  *...Ie.~S.*...@.
+00000220: 237a 41fa fb6b 2e34 212f 23c6 89c9 006f  #zA..k.4!/#....o
+00000230: 2c65 a865 d3b8 a91c 3839 c9bb 4351 05de  ,e.e....89..CQ..
+00000240: 2057 013a 2bd8 53aa bb83 3d76 7050 0d2d   W.:+.S...=vpP.-
+00000250: 60f1 a955 fe2e e48a 70a1 21f9 1721 7a14  `..U....p.!..!z.
+00000260: 1fc5 0146 0200 00                        ...F...
+bandit12@bandit:~$ ls
+data.txt
+bandit12@bandit:~$ ls -la
+total 24
+drwxr-xr-x   2 root     root     4096 Sep 26 21:52 .
+drwxr-xr-x 150 root     root     4096 Sep 26 21:56 ..
+-rw-r--r--   1 root     root      220 Feb 13  2026 .bash_logout
+-rw-r--r--   1 root     root     3851 Sep 26 21:38 .bashrc
+-rw-r--r--   1 root     root      807 Feb 13  2026 .profile
+-rw-r-----   1 bandit13 bandit12 2643 Sep 26 21:52 data.txt
+bandit12@bandit:~$ file data.txt 
+data.txt: ASCII text
+bandit12@bandit:~$ mkdir /tmp/testdir12
+bandit12@bandit:~$ cp data.txt /tmp/testdir12
+bandit12@bandit:~$ cd /tmp/testdir12
+bandit12@bandit:/tmp/testdir12$ ls
+data.txt
+bandit12@bandit:/tmp/testdir12$ xxd -r data.txt > data.bin
+bandit12@bandit:/tmp/testdir12$ file data.
+data.: cannot open `data.' (No such file or directory)
+bandit12@bandit:/tmp/testdir12$ file data.bin 
+data.bin: gzip compressed data, was "data2.bin", last modified: Sat Sep 26 21:52:56 2026, max compression, from Unix, original size modulo 2^32 582
+bandit12@bandit:/tmp/testdir12$ ls
+data.bin  data.txt
+bandit12@bandit:/tmp/testdir12$ cp data.bin datacopy.bin
+bandit12@bandit:/tmp/testdir12$ mv data.bin data.zip
+bandit12@bandit:/tmp/testdir12$ unzip data.zip 
+Archive:  data.zip
+  End-of-central-directory signature not found.  Either this file is not
+  a zipfile, or it constitutes one disk of a multi-part archive.  In the
+  latter case the central directory and zipfile comment will be found on
+  the last disk(s) of this archive.
+unzip:  cannot find zipfile directory in one of data.zip or
+        data.zip.zip, and cannot find data.zip.ZIP, period.
+bandit12@bandit:/tmp/testdir12$ ls
+data.txt  data.zip  datacopy.bin
+bandit12@bandit:/tmp/testdir12$ mv data.zip data.gz
+bandit12@bandit:/tmp/testdir12$ gunzip data.gz 
+bandit12@bandit:/tmp/testdir12$ ls
+data  data.txt  datacopy.bin
+bandit12@bandit:/tmp/testdir12$ file data
+data: bzip2 compressed data, block size = 900k
+bandit12@bandit:/tmp/testdir12$ cp data databzip2copy
+bandit12@bandit:/tmp/testdir12$ ls
+data  data.txt  databzip2copy  datacopy.bin
+bandit12@bandit:/tmp/testdir12$ mv data data.bz2
+bandit12@bandit:/tmp/testdir12$ bunzip2 data.bz2 
+bandit12@bandit:/tmp/testdir12$ ls
+data  data.txt  databzip2copy  datacopy.bin
+bandit12@bandit:/tmp/testdir12$ cat data
+�MRr�Dk�£��0Ba�x�N��?��KSgǄ:e�?H�����<��EC���[]��������a��m�=z���f�J�W4]�@��h�GӤ��;���?ݏ�p��?�_�+Mu��A�G����j�e-�3yMM"�֯��tuoC熢jwH.e���X2p_l�wh2���F،T[�N�>�$aY���4ŋ��N��EY�6�r�}߅�#����}�l �.�z鷮,,?~L�m4'^Ƕ�:{�k����3��4ί�n�6��re�}�>_5;V~���^ʟ��▒�-������>��4),x��{��q�N:��Oժ�����[o5�����ƂR{r��%��cK�:Pbandit12@bandit:/tmp/testdir12$ file data
+data: gzip compressed data, was "data4.bin", last modified: Sat Sep 26 21:52:56 2026, max compression, from Unix, original size modulo 2^32 20480
+bandit12@bandit:/tmp/testdir12$ cp data datagzipcopy
+bandit12@bandit:/tmp/testdir12$ mv data data.gz
+bandit12@bandit:/tmp/testdir12$ gunzip data.gz 
+bandit12@bandit:/tmp/testdir12$ ls
+data  data.txt  databzip2copy  datacopy.bin  datagzipcopy
+bandit12@bandit:/tmp/testdir12$ file data
+data: POSIX tar archive (GNU)
+bandit12@bandit:/tmp/testdir12$ cp data datararPosix
+bandit12@bandit:/tmp/testdir12$ mv data data.tar
+bandit12@bandit:/tmp/testdir12$ tar -xvf data.tar 
+data5.bin
+bandit12@bandit:/tmp/testdir12$ ls
+data.tar  data.txt  data5.bin  databzip2copy  datacopy.bin  datagzipcopy  datararPosix
+bandit12@bandit:/tmp/testdir12$ file data5.bin 
+data5.bin: POSIX tar archive (GNU)
+bandit12@bandit:/tmp/testdir12$ cp data5.bin data5tarcopy.bin
+bandit12@bandit:/tmp/testdir12$ mv data5.bin data5.tar
+bandit12@bandit:/tmp/testdir12$ tar -xvf data5.tar 
+data6.bin
+bandit12@bandit:/tmp/testdir12$ file data6
+data6: cannot open `data6' (No such file or directory)
+bandit12@bandit:/tmp/testdir12$ file data6.bin 
+data6.bin: bzip2 compressed data, block size = 900k
+bandit12@bandit:/tmp/testdir12$ cp data6.bin data6copy
+bandit12@bandit:/tmp/testdir12$ mv data6.bin data6.bz2
+bandit12@bandit:/tmp/testdir12$ bunzip2 data6.bz2 
+bandit12@bandit:/tmp/testdir12$ ls
+data.tar  data.txt  data5.tar  data5tarcopy.bin  data6  data6copy  databzip2copy  datacopy.bin  datagzipcopy  datararPosix
+bandit12@bandit:/tmp/testdir12$ file data6
+data6: POSIX tar archive (GNU)
+bandit12@bandit:/tmp/testdir12$ cp data6 data6copytarposix
+bandit12@bandit:/tmp/testdir12$ mv data6 data6tarposix.tar
+bandit12@bandit:/tmp/testdir12$ tar -xvf data6tarposix.tar 
+data8.bin
+bandit12@bandit:/tmp/testdir12$ file data8.bin 
+data8.bin: gzip compressed data, was "data9.bin", last modified: Sat Sep 26 21:52:56 2026, max compression, from Unix, original size modulo 2^32 49
+bandit12@bandit:/tmp/testdir12$ cp data8.bin data8.bincopy
+bandit12@bandit:/tmp/testdir12$ mv data8.bin data8.gz
+bandit12@bandit:/tmp/testdir12$ gunzip data8.gz 
+bandit12@bandit:/tmp/testdir12$ ls
+data.tar  data5.tar         data6copy          data6tarposix.tar  data8.bincopy  datacopy.bin  datararPosix
+data.txt  data5tarcopy.bin  data6copytarposix  data8              databzip2copy  datagzipcopy
+bandit12@bandit:/tmp/testdir12$ file data8
+data8: ASCII text
+bandit12@bandit:/tmp/testdir12$ cat data8
+The password is qQYQiHOBPR8zR61qxYqX45quvihF2uzk
+bandit12@bandit:/tmp/testdir12$ 
