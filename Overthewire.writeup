@@ -1,0 +1,13 @@
+ssh bandit0@bandit.labs.overthewire.org -p 2220 "bandit0"
+ssh bandit1@bandit.labs.overthewire.org -p 2220 "6y2kwnwK6grgvwvpvLaa2T1cpFEKOhNR"
+"PK8fYLZg2hnHSz83plBL1iEPKdD3QToB" ==> level2
+"7ZZ2LFrykP2zEyvBl4m3clcL7tGYJPME" ==> level3
+"xzTXq1rDJQVVAzdv5cHq1TQytTWufAMq" ==> level4
+"6C7h9GD8M6ai5nr7wo1RonrzFjj9yIrG" ==> level5
+"pXa26xhMWaC2SvDotA4r9EgZkulOeSBW" ==> level6
+"Bmnnvf82KzQlfxgAI2d1zYbr1u9pr3E3" ==> level7
+"VR1ljMayciFxbnUokuQmJFw6QC9VKtub" ==> level8
+"EjmOSvuAu7sGAHqHVcBDPirRe9T03kxl" ==> level9
+"B0s2khmbT9u0geKuOoVGW3JZKhndE3BG" ==> level10
+"VGhlIHBhc3N3b3JkIGlzIHBZZk9ZNkh3VXNEajVyTDlVdnloVTdNQ212OHZONVJvCg==" ==> "pYfOY6HwUsDj5rL9UvyhU7MCmv8vN5Ro" ==> level11
+"Gur cnffjbeq vf TEBbmJCB8DlA0zTewHxVQ0JPLxMvDkeA" ==> "The password is GROozWPO8QyN0mGrjUkID0WCYkZiQxrN" ==> level12
